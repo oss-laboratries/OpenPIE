@@ -1,5 +1,6 @@
-![](images/opie_logo.gif?raw=true "opie_logo")
-# OpenPIEとは
+
+# OpenPIEとは 
+![logo](images/opie_logo.png?raw=true "opie_logo")
 
 OpenPIE (Open Programmable Infrastructure Environment)とは、オープンソースのクラウド／データセンター運用自動化基盤です。
 ポータル、システム監視、構成管理、ジョブ管理、チケット管理などの様々なツールを組み合わせて、自動連携することを可能にするツールチェーンです。
