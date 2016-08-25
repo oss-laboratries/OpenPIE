@@ -1,7 +1,6 @@
 
-# OpenPIEとは 
 ![logo](images/opie_logo.png?raw=true "opie_logo")
-
+# OpenPIEとは 
 OpenPIE (Open Programmable Infrastructure Environment)とは、オープンソースのクラウド／データセンター運用自動化基盤です。
 ポータル、システム監視、構成管理、ジョブ管理、チケット管理などの様々なツールを組み合わせて、自動連携することを可能にするツールチェーンです。
 構成コンポーネントはAPIによる疎結合構造になっていますので、必要な機能だけ選んで使用できます。
@@ -33,7 +32,7 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
 - 実行管理：[JobScheduler](http://www.sos-berlin.com/jobscheduler)
 - バージョン管理：[Gitlab](https://about.gitlab.com/)
 - サービスデスク (予定)：[Redmine](http://redmine.jp/), [OTRS](https://www.otrs.com/)
-- プロビジョニング：[Terraform](https://www.terraform.io/)<!--, [Packer](https://www.packer.io/) -->
+- プロビジョニング：[Terraform](https://www.terraform.io/)
 - アプリケーションインストール/コマンド実行：[Ansible](https://www.ansible.com/)
 - ポータル：[Liferay](https://web.liferay.com/ja/community/welcome/dashboard)
 
