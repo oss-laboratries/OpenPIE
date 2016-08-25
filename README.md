@@ -1,3 +1,4 @@
+![](images/opie_logo.gif?raw=true "opie_logo")
 # OpenPIEとは
 
 OpenPIE (Open Programmable Infrastructure Environment)とは、オープンソースのクラウド／データセンター運用自動化基盤です。
@@ -17,7 +18,11 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
 
 # アーキテクチャ
 
-[概要図](images/opie_architecture.gif?raw=true "opie_architecture")
+![概要図](images/opie_architecture.gif?raw=true "opie_architecture")
+
+## 設定シート例
+
+![](images/opie_excel.gif?raw=true "opie_excel")
 
 ## 使用ツール
 
@@ -41,16 +46,19 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
 
 ## コンポーネント
 
-1. Liferay ポートレット
+- Liferay ポートレット
    - ファイルアップロード：Excel設定シートをプロジェクトにアップロードします
    - プロジェクト表示：設定シートから生成されたプロジェクトを表示、Apply/Destroyできます
    - Gitlab表示：設定シートから生成されたファイル群のリポジトリを表示します
    - Zabbix表示：生成されたサーバーの監視イベントを表示します
    - CMDB表示：Zabbix表示ポートレットで指定したサーバーの構成情報を表示します
    - ジョブ表示：実行されているジョブを表示します
-   - 画面イメージ
 
-1. ジョブチェーン
+画面イメージ
+
+![](images/opie_screenshot.gif?raw=true "opie_screenshot")
+
+- ジョブチェーン
    - パラメータ作成：Excel設定シートから、Terraform/Ansibleの設定情報を生成します
    - ファイルモニター：アップロードされるExcel設定シートを検知し、パラメータ作成を実行します
    - アプライ：生成された設定情報をもとにTerraform/Ansibleを実行し、サーバーを作成、アプリケーションをインストール、監視設定、構成情報登録まで行います
