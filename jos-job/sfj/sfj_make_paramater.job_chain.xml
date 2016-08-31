@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job_chain  title="make_paramater">
+    <job_chain_node  state="1-convx2j" job="1-convx2j" next_state="2-movep2d" error_state="error"/>
+
+    <job_chain_node  state="2-movep2d" job="2-movep2d" next_state="3-pushj2g" error_state="error"/>
+
+    <job_chain_node  state="3-pushj2g" job="3-pushj2g" next_state="4-makej2p" error_state="error"/>
+
+    <job_chain_node  state="4-makej2p" job="4-makej2p" next_state="5-pushj2g" error_state="error"/>
+
+    <job_chain_node  state="5-pushj2g" job="5-pushj2g" next_state="success" error_state="error"/>
+
+    <job_chain_node  state="success"/>
+
+    <job_chain_node  state="error"/>
+</job_chain>

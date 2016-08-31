@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Body>
+	<addOrder xmlns="http://www.sos-berlin.com/scheduler">
+		<jobchain>sfj/SFJJOB</jobchain>
+		<title>sfj_manage</title>
+		<param>
+			<name>SFJPARA</name>
+			<value>SFJFILENAME</value>
+		</param>
+	</addOrder>
+</soapenv:Body></soapenv:Envelope>

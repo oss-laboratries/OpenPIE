@@ -1,0 +1,37 @@
+#!/bin/bash
+
+. /etc/sfj/sfjconf.sh
+
+DBG=0
+
+PRONAME=$1
+if [ "${PRONAME}" == "" ]
+then
+	echo "  Usage : $0 <Projyect Name>"
+	exit 1
+fi
+
+#-----------------------------
+# Clone
+#-----------------------------
+
+cd ${GITREPODIR}
+if [ -d ${GITREPODIR}/${PRONAME} ]
+then
+	rm -rf ${GITREPODIR}/${PRONAME}
+fi
+
+expect -c "
+set timeout 5
+spawn env LANG=C git clone ${GITURL}/${PRONAME}.git
+expect \"${GITUSER}@${GITHOST}\"
+sleep 1
+send \"${GITPASS}\n\"
+expect {
+	repository {sleep 1}
+	done {sleep 1}
+}
+exit 0
+"
+
+#

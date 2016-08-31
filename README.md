@@ -36,9 +36,8 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
 - アプリケーションインストール/コマンド実行：[Ansible](https://www.ansible.com/)
 - ポータル：[Liferay](https://web.liferay.com/ja/community/welcome/dashboard)
 
-## 対象システム
+## 管理対象システム
 
-- VirtualBox
 - AWS EC2
 - Openstack (予定)
 - VMware vSphere (予定)
@@ -83,7 +82,11 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
 
 # インストール方法
 
+[インストール手順](docs/install.md)
+
 # クイックスタート
+
+[クイックスタート](docs/quickstart.md)
 
 # ライセンス
 

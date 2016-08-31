@@ -1,0 +1,25 @@
+#!/bin/bash
+
+. /etc/sfj/sfjconf.sh
+
+KPWD=${PWD}
+PN=$1
+JN=$2
+DBG=$3
+
+mkdir -p ${GITREPODIR}/${PN}/result
+
+cd /usr/local/sbin
+python sfjmakej2p.py ${PN} ${JN} ${DBG} | tee ${GITREPODIR}/${PN}/result/apply.log 2>&1
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
+
+cd ${KPWD}
+
+exit 0
+
+#

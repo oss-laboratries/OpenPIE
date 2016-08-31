@@ -1,0 +1,34 @@
+variable "hostipSFJPARA" {}
+variable "amitypeSFJPARA" {}
+variable "instance_typeSFJPARA" {}
+variable "privatekeyfile" {}
+
+resource "aws_instance" "hostSFJPARA" {
+  depends_on = ["aws_internet_gateway.sfj_igw"]
+  ami = "${var.amitypeSFJPARA}"
+  key_name = "${var.private_key_name}"
+  subnet_id = "${aws_subnet.main.id}"
+  vpc_security_group_ids = ["${aws_security_group.allow_acl.id}"]
+  instance_type = "${var.instance_typeSFJPARA}"
+  private_ip = "${var.hostipSFJPARA}"
+  tags {
+    Name = "ShichiFukuJin"
+  }
+}
+
+resource "aws_eip" "eipSFJPARA" {
+  depends_on = ["aws_internet_gateway.sfj_igw"]
+  instance = "${aws_instance.hostSFJPARA.id}"
+  vpc = true
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 10"
+    ]
+    connection {
+      host = "${self.public_ip}"
+      user = "ec2-user"
+      private_key = "${var.privatekeyfile}"
+    }
+  }
+}
+

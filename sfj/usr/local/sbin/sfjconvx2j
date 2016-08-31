@@ -1,0 +1,30 @@
+#!/bin/bash
+
+. /etc/sfj/sfjconf.sh
+
+KPWD=${PWD}
+FILE=$1
+DBG=$2
+
+cd /usr/local/sbin
+A=`python sfjconvx2j.py ${FILE} ${DBG}`
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+else
+	echo $A
+
+	CHK=`echo $A | grep SystemName`
+	if [ "${CHK}" == "" ]
+	then
+		echo "EROOR exist!"
+		exit 1
+	fi
+fi
+
+cd ${KPWD}
+
+exit 0
+#

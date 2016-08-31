@@ -1,0 +1,139 @@
+#!/bin/bash
+
+. /etc/sfj/sfjconf.sh
+
+DBG=0
+D="`date +%m%d%H%M`"
+
+#-----------------------------
+# Chack Arguments
+#-----------------------------
+if [ "$1" == "" ]
+then
+	echo "  Usage : $0 <Projyect Name>"
+	exit 1
+fi
+PRONAME=$1
+
+if [ "$2" != "" ]
+then
+	DBG=$2
+fi
+
+if [ -d ${GITREPODIR}/${PRONAME} ]
+then
+	mkdir -p ${WORKDIR}/${PRONAME}
+	/bin/mv -f ${GITREPODIR}/${PRONAME}/* ${WORKDIR}/${PRONAME}
+	rm -rf ${WORKDIR}/${PRONAME}/.git
+	rm -rf ${GITREPODIR}/${PRONAME}
+	echo "Move Dir ${GITREPODIR}/${PRONAME} to ${WORKDIR}/${PRONAME}"
+fi
+
+if [ ! -d ${WORKDIR}/${PRONAME} ]
+then
+	echo "No Exist Directory ,is ${WORKDIR}/${PRONAME}"
+	exit 1
+fi
+
+PARAFILE=`find ${WORKDIR}/${PRONAME} -type f -print`
+if [ "${PARAFILE}" == "" ]
+then
+	echo "No Exist File on ${WORKDIR}/${PRONAME}"
+	exit 1
+fi
+
+#-----------------------------
+# Create Repogitry
+#-----------------------------
+cd ${GITREPODIR}
+PROEXIST="0"
+for p in  `sudo gitlab project list | grep path | awk '{print $2}'`
+do
+	PN=`basename ${p}`
+	if [ "${PN}" == "${PRONAME}" ]
+	then
+		PROEXIST="1"
+		if [ $DBG -gt 0 ]
+		then
+			echo Exist Project ${PN}
+		fi
+	fi
+done
+
+if [ "${PROEXIST}" == "0" ]
+then
+	sudo gitlab project create --name ${PRONAME} > /dev/null
+	if [ $DBG -gt 0 ]
+	then
+		echo Create Project ${PRONAME}
+	fi
+fi
+
+#-----------------------------
+# Clone & Commit & Push
+#-----------------------------
+
+if [ $DBG -gt 0 ]
+then
+	echo ${PARAFILE}
+fi
+
+mkdir -p ${BACKUPDIR}/${PRONAME}
+
+cd ${GITREPODIR}
+
+expect -c "
+set timeout 5
+spawn env LANG=C git clone ${GITURL}/${PRONAME}.git
+expect \"${GITUSER}@${GITHOST}\"
+sleep 1
+send \"${GITPASS}\n\"
+expect {
+	repository {sleep 1}
+	done {sleep 1}
+}
+exit 0
+"
+git config --global user.name "${GITUSER}"
+git config --global user.email "${GITEMAIL}"
+
+cd ${WORKDIR}/${PRONAME}
+
+PARAFILES=`find . -type f -print | grep -v .git`
+PARADIRS=`find . -type d -print | grep -v .git`
+
+cd ${BACKUPDIR}/${PRONAME}
+for d in ${PARADIRS}
+do
+	mkdir -p ${d}
+done
+cd ${GITREPODIR}/${PRONAME}
+for d in ${PARADIRS}
+do
+	mkdir -p ${d}
+done
+for f in ${PARAFILES}
+do
+	cp ${WORKDIR}/${PRONAME}/${f} ${GITREPODIR}/${PRONAME}/${f}
+	mv ${WORKDIR}/${PRONAME}/${f} ${BACKUPDIR}/${PRONAME}/${f}-${D}
+done
+git add --all
+rm -rf ${WORKDIR}/${PRONAME}
+
+git commit -m "Upload in ${D}"
+
+expect -c "
+set timeout 5
+spawn env LANG=C git push -u origin master
+expect \"${GITUSER}@${GITHOST}\"
+sleep 1
+send \"${GITPASS}\n\"
+expect {
+	default {sleep 1}
+	up-to-date {sleep 1}
+}
+exit 0
+"
+
+exit 0
+#

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+	echo "no project name"
+	exit 1
+fi
+
+POST=`sed "s/SFJFILENAME/${1}/g" /etc/sfj/soap.xml \
+	| sed "s/SFJJOB/sfj_apply/g"\
+	| sed "s/SFJPARA/PNAME/g"`
+#echo ${POST} | curl "http://192.168.33.10:4444/scheduler" -X POST -d @-
+echo ${POST} | curl "http://192.168.100.242:4444/scheduler" -X POST -d @-
+echo ""
+#

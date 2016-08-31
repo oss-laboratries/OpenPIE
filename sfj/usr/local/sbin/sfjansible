@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+	echo "no project name"
+	exit 1
+fi
+
+PDIR=${PWD}
+
+. /etc/sfj/sfjconf.sh
+
+cd ${BINDIR}
+
+for y in `ls ${GITREPODIR}/${1}/*.yml`
+do
+	h=`echo ${y} | sed "s/yml$/host/"`
+	echo "EXEC : ansible-plybook -i ${h} ${y}"
+	ansible-plybook -i ${h} ${y}
+	RET=$?
+done
+
+cd ${PDIR}
+
+exit ${RET}
+
+#

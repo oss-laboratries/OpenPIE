@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job  order="yes" stop_on_error="no">
+    <script  language="shell">
+        <![CDATA[
+#!/bin/bash
+
+PNAME=$SCHEDULER_PARAM_PNAME
+echo "Project Name : ${PNAME}"
+
+mkdir -p /var/sfj/gitrepo/${PNAME}/result
+
+cd /var/sfj/gitrepo/${PNAME}
+terraform apply -var-file=sfjpara.tfvars | tee /var/sfj/gitrepo/${PNAME}/result/plan.log 2>&1
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
+
+# ホスト毎のアプリケーションインストール
+# zabbix agent インストール
+# zabbixにホスト登録
+# OpenAudITにホスト登録
+
+/usr/local/sbin/sfjpushj2g ${PNAME}
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
+
+#
+exit 0
+
+#
+        ]]>
+    </script>
+
+    <run_time />
+</job>

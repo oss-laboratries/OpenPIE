@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job  order="yes" stop_on_error="no">
+    <script  language="shell">
+        <![CDATA[
+#!/bin/bash
+
+PNAME=$SCHEDULER_PARAM_PNAME
+echo "Project Name : ${PNAME}"
+
+/usr/local/sbin/sfjmakej2p ${PNAME}
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
+
+/usr/local/sbin/sfjplan ${PNAME}
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
+
+/usr/local/sbin/sfjansible ${PNAME}
+RET=$?
+
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
+
+chmod 0600 /var/sfj/gitrepo/${PNAME}/*.pem
+
+#
+echo "PNAME=$PNAME" >> $SCHEDULER_RETURN_VALUES
+
+#
+exit 0
+
+#
+        ]]>
+    </script>
+
+    <run_time />
+</job>

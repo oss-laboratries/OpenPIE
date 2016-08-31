@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. /etc/sfj/sfjconf.sh
+
+KPWD=${PWD}
+
+cd /usr/local/sbin
+python sfjgetconfig.py $1
+
+cd ${KPWD}
+
+#

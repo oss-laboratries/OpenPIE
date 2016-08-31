@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job  stop_on_error="no" order="yes">
+    <script  language="shell">
+        <![CDATA[
+#!/bin/bash
+
+FILES=`ls -1t /var/sfj/upload/*.xlsx 2> /dev/null | tail -1`
+
+if [ "${FILES}" != "" ]
+then
+	echo "Fouond File Name : ${FILES}"
+
+	FILE=`echo ${FILES} | tail -1`
+
+	if [ "${FILE}" != "" ]
+	then
+		FILE=`basename ${FILE}`
+		echo "FileName : ${FILE}"
+
+		POST=`sed "s/SFJFILENAME/${FILE}/g" /etc/sfj/soap.xml | sed "s/SFJJOB/sfj_make_paramater/g"| sed "s/SFJPARA/FILENAME/g"`
+		echo "POST : ${POST}"
+		echo ${POST} | curl "http://192.168.100.242:4444/scheduler" -X POST -d @-
+
+		echo "FILENAME=$FILE" >> $SCHEDULER_RETURN_VALUES
+		exit 11
+	fi
+fi
+
+exit 0
+#
+        ]]>
+    </script>
+
+    <run_time />
+</job>

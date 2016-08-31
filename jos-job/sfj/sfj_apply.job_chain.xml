@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job_chain  title="appry">
+    <job_chain_node  state="6-terraform_apply" job="6-terraform_apply" next_state="success" error_state="error"/>
+
+    <job_chain_node  state="success"/>
+
+    <job_chain_node  state="error"/>
+</job_chain>

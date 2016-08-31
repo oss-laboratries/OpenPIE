@@ -1,0 +1,26 @@
+#Set GitLab
+GitURL=http://192.168.100.242
+PrivateToken=_AS2JYyccyoqDcXWT2Mg
+GitUser=root
+
+#Set Liferay tomcat path
+Liferay_Tomcat_Path=/opt/liferay-portal-6.2-ce-ga6/tomcat-7.0.62
+
+#Set File upload server
+FLServer=http://192.168.100.242
+FLUser=root
+FLPassword=P@ssword
+FLUploadpath=/var/sfj/upload
+#Set Zabbix server
+#ZabbixURL=http://192.168.100.127:88/zabbix
+ZabbixURL=http://192.168.100.242:88/zabbix
+ZabbixUser=Admin
+ZabbixPassword=zabbix
+
+#Set CMDBuild server
+CMDBuildURL=http://192.168.100.242:8099
+CMDBUser=admin
+CMDBPassword=admin
+
+#Set JobScheduler
+JobSchedulerURL=http://192.168.100.242:4444

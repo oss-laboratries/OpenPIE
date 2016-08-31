@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+	echo "no project name"
+	exit 1
+fi
+
+PDIR=${PWD}
+
+. /etc/sfj/sfjconf.sh
+
+cd ${GITREPODIR}/${1}
+/usr/local/sbin/tf/terraform plan -var-file=sfjpara.tfvars
+RET=$?
+
+cd ${PDIR}
+
+exit ${RET}
+
+#

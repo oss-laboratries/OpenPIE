@@ -1,0 +1,208 @@
+{
+  "system": {
+    "file": "ParamaterSeet.xlsx",
+    "sheet": "paramater",
+    "dataarea": "2,2",
+    "direction": 1,
+    "step": 1,
+    "items": {
+      "0": {
+        "itm": "sysname",
+        "def": "MUST",
+        "pos": 10
+      }
+    }
+  },
+  "cloud": {
+    "file": "ParamaterSeet.xlsx",
+    "sheet": "paramater",
+    "dataarea": "5,5",
+    "direction": 2,
+    "step": 3,
+    "items": {
+      "0": {
+        "itm": "cloudname",
+        "def": "MUST",
+        "pos": 5
+      },
+      "1": {
+        "itm": "delflag",
+        "def": "N",
+        "pos": 2
+      },
+      "2": {
+        "itm": "cloudtype",
+        "def": "MUST",
+        "pos": 6
+      },
+      "3": {
+        "itm": "accountid",
+        "def": "MUST",
+        "pos": 7
+      },
+      "4": {
+        "itm": "reagion",
+        "def": "",
+        "pos": 8
+      },
+      "5": {
+        "itm": "accesskey",
+        "def": "",
+        "pos": 9
+      },
+      "6": {
+        "itm": "secretkey",
+        "def": "",
+        "pos": 10
+      },
+      "7": {
+        "itm": "privatekeyfile",
+        "def": "",
+        "pos": 11
+      }
+    }
+  },
+  "hosts": {
+    "file": "ParamaterSeet.xlsx",
+    "sheet": "paramater",
+    "dataarea": "6,27",
+    "direction": 2,
+    "step": 3,
+    "items": {
+      "0": {
+        "itm": "hostname",
+        "def": "MUST",
+        "pos": 25
+      },
+      "1": {
+        "itm": "domainname",
+        "def": "MUST",
+        "pos": 36
+      },
+      "2": {
+        "itm": "delflag",
+        "def": "N",
+        "pos": 0
+      },
+      "3": {
+        "itm": "hostip",
+        "def": "MUST",
+        "pos": 28
+      },
+      "4": {
+        "itm": "hostip2",
+        "def": "",
+        "pos": 28
+      },
+      "5": {
+        "itm": "user",
+        "def": "MUST",
+        "pos": 35
+      },
+      "6": {
+        "itm": "pass1",
+        "def": "MUST",
+        "pos": 36
+      },
+      "7": {
+        "itm": "key",
+        "def": "",
+        "pos": 37
+      },
+      "8": {
+        "itm": "vmtype",
+        "def": "",
+        "pos": 23
+      },
+      "9": {
+        "itm": "ostype",
+        "def": "",
+        "pos": 24
+      },
+      "10": {
+        "itm": "gip",
+        "def": "",
+        "pos": 29
+      },
+      "11": {
+        "itm": "dns1",
+        "def": "",
+        "pos": 31
+      },
+      "12": {
+        "itm": "dns2",
+        "def": "",
+        "pos": 32
+      },
+      "13": {
+        "itm": "dns3",
+        "def": "",
+        "pos": 33
+      },
+      "14": {
+        "itm": "dnssearch",
+        "def": "",
+        "pos": 34
+      },
+      "15": {
+        "itm": "extdisk",
+        "def": "",
+        "pos": 38
+      },
+      "16": {
+        "itm": "extmp",
+        "def": "",
+        "pos": 39
+      },
+      "17": {
+        "itm": "monitorname",
+        "def": "",
+        "pos": 27
+      },
+      "18": {
+        "itm": "ApacheHttpd",
+        "def": "",
+        "pos": 43
+      },
+      "19": {
+        "itm": "MySQL",
+        "def": "",
+        "pos": 44
+      },
+      "20": {
+        "itm": "PHP",
+        "def": "",
+        "pos": 45
+      },
+      "21": {
+        "itm": "custom1",
+        "def": "",
+        "pos": 46
+      },
+      "22": {
+        "itm": "custom2",
+        "def": "",
+        "pos": 47
+      }
+    }
+  },
+  "network": {
+    "file": "ParamaterSeet.xlsx",
+    "sheet": "paramater",
+    "dataarea": "16,19",
+    "direction": 1,
+    "step": 3,
+    "items": {
+      "0": {
+        "itm": "network",
+        "def": "",
+        "pos": 30
+      },
+      "1": {
+        "itm": "netmask",
+        "def": "",
+        "pos": 33
+      }
+    }
+  }
+}
