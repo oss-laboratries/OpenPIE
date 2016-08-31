@@ -63,11 +63,6 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
    - アプライ：生成された設定情報をもとにTerraform/Ansibleを実行し、サーバーを作成、アプリケーションをインストール、監視設定、構成情報登録まで行います
    - デストロイ：作成されたサーバーを削除します
 
-
-## プレゼンテーション
-
-- [OpenPIE紹介資料]()
-
 # 動作要件
 - ソフトウェア
    - CentOS/RHEL 6/7
@@ -88,6 +83,11 @@ OpenPIEの目的は運用自動化そのものではなく、すべてのオペ�
 
 [クイックスタート](docs/quickstart.md)
 
+# メーリングリスト
+
+opie-forum@googlegroups.com
+
 # ライセンス
 
 [Apache License　V.2](http://www.apache.org/licenses/)
+
