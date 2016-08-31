@@ -211,6 +211,7 @@ JobSchedulerURL=http://192.168.100.127:4444
 ```
 # chmod +x /etc/sfj/SFJ_config.xlsx
 # chmod +x /etc/sfj/acl.tf
+# chmod +x /etc/sfj/sfjconf.sh
 # chmod +x /etc/sfj/hostSFJPARA.tf.template
 # chmod +x /etc/sfj/vpcnet.tf  
 ```
@@ -619,12 +620,62 @@ _sos_lang            = '';
 ↓
 _sos_lang            = 'ja';
 ```
+
+- scheduler.xmlの編集
+
+```
+# vim /home/sfjuser/sos-berlin.com/jobscheduler/sfj/config/
+```
+※以下をconfigセクションへの追加
+```
+
+               <config mail_xslt_stylesheet="config/scheduler_mail.xsl" port="4444">
+                ・
+                ・
+                ・
+
+                                <http_server>
+                                        <web_service
+                                                debug = "no"
+                                                request_xslt_stylesheet = "config/scheduler_soap_request.xslt"
+                                                response_xslt_stylesheet = "config/scheduler_soap_response.xslt"
+                                                name = "scheduler"
+                                                url_path = "/scheduler" >
+                                        </web_service>
+                                </http_server>
+                </config>
+```
 - Jobのインポート
 「jos-job/sfj」を以下のディレクトリに格納する
 ```
 # mv jos-job/sfj /home/sfjuser/sos-berlin.com/jobscheduler/sfj/config/live/
 ```
-※すべてのファイルのownerは、sfjuser.sfjuserである事
+- オーナ/グループの変更
+```
+# chown -R sfjuser.sfjuser /home/sfjuser/sos-berlin.com/
+```
+ - sfjconf.shの修正
+```
+# vim /etc/sfj/sfjconf.sh
+```
+※以下の設定を必要に応じ修正
+```
+#JobScheduler実行ユーザ
+export SFJUSER="sfjuser"
+
+#GutLabサーバのホスト
+export GITHOST="localhost"
+#GitLabサーバのユーザ、パスワード
+export GITUSER="root"
+export GITPASS="password"
+#JobSchedulerのホスト
+export JOSHOST="192.168.100.127"
+```
+
+- JobSchedulerの再起動
+```
+# /opt/sos-berlin.com/jobscheduler/sfj/bin/jobscheduler.sh restart
+```
 
 ９．Ansibleのインストール
 ```

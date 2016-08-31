@@ -15,7 +15,7 @@ cd ${BINDIR}
 for y in `ls ${GITREPODIR}/${1}/*.yml`
 do
 	h=`echo ${y} | sed "s/yml$/host/"`
-	echo "EXEC : ansible-plybook -i ${h} ${y}"
+	echo "EXEC : ansible-playbook -i ${h} ${y}"
 	ansible-plybook -i ${h} ${y}
 	RET=$?
 done

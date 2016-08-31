@@ -30,7 +30,7 @@ export SFJUSER="sfjuser"
 export GITLABDIR="/var/opt/gitlab/git-data/repositories/root"
 export GITHOST="localhost"
 export GITUSER="root"
-export GITPASS="P@ssword"
+export GITPASS="password"
 export GITEMAIL="${GITUSER}@${GITHOST}"
 export GITURL="http://${GITUSER}@${GITHOST}/${GITUSER}"
 
@@ -43,3 +43,6 @@ export hostsfile="${CONFDIR}/hostSFJPARA.tf.template"
 export sfjpara="sfjpara.tfvars"
 #
 
+export JOSHOST="192.168.100.127"
+
+#

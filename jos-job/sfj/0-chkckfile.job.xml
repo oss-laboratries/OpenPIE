@@ -6,6 +6,8 @@
         <![CDATA[
 #!/bin/bash
 
+. /etc/sfj/sfjconf.sh
+
 FILES=`ls -1t /var/sfj/upload/*.xlsx 2> /dev/null | tail -1`
 
 if [ "${FILES}" != "" ]
@@ -21,10 +23,11 @@ then
 
 		POST=`sed "s/SFJFILENAME/${FILE}/g" /etc/sfj/soap.xml | sed "s/SFJJOB/sfj_make_paramater/g"| sed "s/SFJPARA/FILENAME/g"`
 		echo "POST : ${POST}"
-		echo ${POST} | curl "http://192.168.100.242:4444/scheduler" -X POST -d @-
+		echo "echo ${POST} | curl \"http://${JOSHOST}:4444/scheduler\" -X POST -d @-"
+		echo ${POST} | curl "http://${JOSHOST}:4444/scheduler" -X POST -d @-
 
 		echo "FILENAME=$FILE" >> $SCHEDULER_RETURN_VALUES
-		exit 11
+		## exit 11
 	fi
 fi
 

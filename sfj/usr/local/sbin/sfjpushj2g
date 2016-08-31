@@ -20,6 +20,11 @@ then
 	DBG=$2
 fi
 
+if [ -d ${WORKDIR} ]
+then
+	mkdir -p ${WORKDIR}
+fi
+
 if [ -d ${GITREPODIR}/${PRONAME} ]
 then
 	mkdir -p ${WORKDIR}/${PRONAME}

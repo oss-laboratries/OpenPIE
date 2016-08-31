@@ -27,7 +27,7 @@
     - データベース：PostgreSQL, cmdbuild
       - ユーザー：postgres
       - パスワード：postgres
-  - インベントリ管理：Open-Audit http://Gitlabサーバー/open-audit
+  - インベントリ管理：Open-Audit http://Gitlabサーバー:88/open-audit
       - ユーザー：admin
       - パスワード：password
     - データベース：MySQL, openaudit
@@ -38,8 +38,8 @@
       - ユーザー：scheduler
       - パスワード：scheduler
   - バージョン管理：Gitlab http://Gitlabサーバー
-      - ユーザー：admin
-      - パスワード：admin
+      - ユーザー：root
+      - パスワード：password
     - データベース：PostgreSQL, gitlabhq_production
       - ユーザー：gitlab
       - パスワード：gitlab

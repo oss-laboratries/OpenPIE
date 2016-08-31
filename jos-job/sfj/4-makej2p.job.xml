@@ -17,6 +17,8 @@ then
         exit ${RET}
 fi
 
+chmod 0600 /var/sfj/gitrepo/${PNAME}/*.pem
+
 /usr/local/sbin/sfjplan ${PNAME}
 RET=$?
 
@@ -32,8 +34,6 @@ if [ ${RET} -ne 0 ]
 then
         exit ${RET}
 fi
-
-chmod 0600 /var/sfj/gitrepo/${PNAME}/*.pem
 
 #
 echo "PNAME=$PNAME" >> $SCHEDULER_RETURN_VALUES
