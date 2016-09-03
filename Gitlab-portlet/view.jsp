@@ -256,16 +256,14 @@ public static String marge(String mar) throws IOException {
 	var gittoken = "<%= gittoken %>";
 	var gitusr = "<%= gitusr %>";
 	var mydata = <%= marjsp %>;
-//	var mydata = [{"id":"7ec9a4b774e2472d8e38bc18a3aa1912bacf483e","name":"aa.sh","type":"blob","mode":"100644","fullpath":"aa.sh","level":0,"parent":"","isLeaf":"true","expanded":"true","loaded":"true"},{"id":"881841f148a5aaa7713645a659bc780bbffdce5c","name":"bb.sh","type":"blob","mode":"100644","fullpath":"bb.sh","level":0,"parent":"","isLeaf":"true","expanded":"true","loaded":"true"}]
 
-/*
 	console.log(giturl);
 	console.log(gitpjname);
 	console.log(gitpjtid);
 	console.log(gittoken);
 	console.log(gitusr);
 	console.log(mydata);
-*/
+
     console.log(mydata);
 	if (mydata != ""){
 	

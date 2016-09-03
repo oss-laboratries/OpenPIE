@@ -11,7 +11,7 @@
 		<header-portlet-javascript>/js/jquery.jqGrid.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/grid.locale-ja.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/jquery-ui.min.js</header-portlet-javascript>
-		<css-class-wrapper>IPC-reciver-portlet</css-class-wrapper>
+		<css-class-wrapper>GitLab-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

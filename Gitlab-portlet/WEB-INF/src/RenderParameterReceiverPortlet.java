@@ -18,8 +18,8 @@ public class RenderParameterReceiverPortlet extends MVCPortlet{
          */
         String pname = renderRequest.getParameter("pname");
         String pid = renderRequest.getParameter("pid");
-        System.out.println("=========myname======="+pname);
-        System.out.println("=========pid======="+pid);
+//        System.out.println("=========myname======="+pname);
+//        System.out.println("=========pid======="+pid);
         super.doView(renderRequest, renderResponse);
     }
 }
