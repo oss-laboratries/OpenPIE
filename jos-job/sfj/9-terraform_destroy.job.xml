@@ -7,17 +7,13 @@
 #!/bin/bash
 
 PNAME=$SCHEDULER_PARAM_PNAME
+echo "Project Name : ${PNAME}"
 
-if [ "${PNAME}" != "" ]
+/usr/local/sbin/sfjdestroy ${PNAME}
+if [ "${PNAME}" == "" ]
 then
-	echo "Project Name : ${PNAME}"
-
-	mkdir -p /var/sfj/gitrepo/${PNAME}/result
-
-	cd /var/sfj/gitrepo/${PNAME}
-	terraform destroy -var-file=sfjpara.tfvars -force | tee /var/sfj/gitrepo/${PNAME}/result/destroy.log 2>&1
-else
-	terraform destroy -var-file=sfjpara.tfvars -force
+        echo "No PNAME"
+        exit 121
 fi
 RET=$?
 
@@ -25,6 +21,9 @@ if [ ${RET} -ne 0 ]
 then
         exit ${RET}
 fi
+
+#
+echo "PNAME=$PNAME" >> $SCHEDULER_RETURN_VALUES
 
 #
 exit 0

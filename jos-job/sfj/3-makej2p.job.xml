@@ -12,9 +12,10 @@ then
         echo "No PNAME"
         exit 121
 fi
+
 echo "Project Name : ${PNAME}"
 
-/usr/local/sbin/sfjapply ${PNAME}
+/usr/local/sbin/sfjmakej2p ${PNAME}
 RET=$?
 
 if [ ${RET} -ne 0 ]

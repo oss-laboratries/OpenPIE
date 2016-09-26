@@ -1,0 +1,32 @@
+{
+  "rolelist": {
+    "0": {
+      "appname": "ZabbixAgent",
+      "roleinfo": "ZabbixAgent"
+    },
+    "1": {
+      "appname": "Base",
+      "roleinfo": ""
+    },
+    "2": {
+      "appname": "ApacheHttpd",
+      "roleinfo": "httpd"
+    },
+    "3": {
+      "appname": "MySQL",
+      "roleinfo": "MySQL"
+    },
+    "4": {
+      "appname": "PHP",
+      "roleinfo": "PHP"
+    },
+    "5": {
+      "appname": "custom1",
+      "roleinfo": ""
+    },
+    "6": {
+      "appname": "custom2",
+      "roleinfo": ""
+    }
+  }
+}

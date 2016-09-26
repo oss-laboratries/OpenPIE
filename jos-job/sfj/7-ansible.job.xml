@@ -14,7 +14,7 @@ then
 fi
 echo "Project Name : ${PNAME}"
 
-/usr/local/sbin/sfjapply ${PNAME}
+/usr/local/sbin/sfjansible ${PNAME}
 RET=$?
 
 if [ ${RET} -ne 0 ]

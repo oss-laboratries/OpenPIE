@@ -1,0 +1,33 @@
+# Zabbix Agentのホスト登録
+- name: Create host groups
+  local_action:
+    module: zabbix_group
+    server_url: "{{ lookup('env', 'ZBXURL') }}"
+    login_user: "{{ lookup('env', 'ZBXUSER') }}"
+    login_password: "{{ lookup('env', 'ZBXPASS') }}"
+    state: present
+    host_groups:
+      - "{{ lookup('env', 'ZBXGRP') }}"
+
+- name: Create a new host or update an existing host's info
+  local_action:
+    module: zabbix_host
+    server_url: "{{ lookup('env', 'ZBXURL') }}"
+    login_user: "{{ lookup('env', 'ZBXUSER') }}"
+    login_password: "{{ lookup('env', 'ZBXPASS') }}"
+    host_name: "{{ lookup('env', 'AgentTag') }}"
+    host_groups:
+      - "{{ lookup('env', 'ZBXGRP') }}"
+    link_templates:
+      - "{{ lookup('env', 'ZBXTEMPLATE') }}"
+    status: enabled
+    state: present
+    interfaces:
+      - type: 1
+        main: 1
+        useip: 1
+        ip: "{{ lookup('env', 'AgentPublicIP') }}"
+        dns: "{{ lookup('env', 'AgentTag') }}"
+        port: 10050
+
+

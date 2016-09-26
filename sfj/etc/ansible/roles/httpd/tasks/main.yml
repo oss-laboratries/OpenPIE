@@ -1,0 +1,14 @@
+# Install apache
+- name: Install apache,perl-CGI,perl-JSON
+  yum: name={{ item }} state=present
+  with_items:
+    - httpd
+    - perl-CGI
+    - perl-JSON
+
+- name: Execute permission granted
+  file: path=/var/log/httpd mode=655
+
+- name: Restart apache
+  service: name=httpd state=restarted enabled=yes
+  ignore_errors: True

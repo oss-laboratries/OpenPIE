@@ -11,27 +11,36 @@ provider "aws" {
   region = "${var.reagion}"
 }
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "SFJTAGS_vpc" {
   cidr_block = "${var.network0}/${var.netmask0}"
+  tags {
+    Name = "SFJTAGS_vpc"
+  }
 }
 
-resource "aws_subnet" "main" {
-  vpc_id = "${aws_vpc.main.id}"
+resource "aws_subnet" "SFJTAGS_subnet" {
+  vpc_id = "${aws_vpc.SFJTAGS_vpc.id}"
   cidr_block = "${var.network0}/${var.netmask0}"
+  tags {
+    Name = "SFJTAGS_subnet"
+  }
 }
 
-resource "aws_internet_gateway" "sfj_igw" {
-  vpc_id = "${aws_vpc.main.id}"
+resource "aws_internet_gateway" "SFJTAGS_igw" {
+  vpc_id = "${aws_vpc.SFJTAGS_vpc.id}"
+  tags {
+    Name = "SFJTAGS"
+  }
 }
 
-resource "aws_route" "sfj_igw_route" {
-  route_table_id = "${aws_vpc.main.main_route_table_id}"
+resource "aws_route" "SFJTAGS_igw_route" {
+  route_table_id = "${aws_vpc.SFJTAGS_vpc.main_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id = "${aws_internet_gateway.sfj_igw.id}"
+  gateway_id = "${aws_internet_gateway.SFJTAGS_igw.id}"
 }
 
-resource "aws_route_table_association" "a" {
-  subnet_id = "${aws_subnet.main.id}"
-  route_table_id = "${aws_vpc.main.main_route_table_id}"
+resource "aws_route_table_association" "SFJTAGS_route_table" {
+  subnet_id = "${aws_subnet.SFJTAGS_subnet.id}"
+  route_table_id = "${aws_vpc.SFJTAGS_vpc.main_route_table_id}"
 }
 

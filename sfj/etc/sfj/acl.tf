@@ -4,10 +4,10 @@ variable "private_key_name" {}
 variable "network0" {}
 variable "netmask0" {}
 
-resource "aws_security_group" "allow_acl" {
-  name = "allow_ssh_httpd"
+resource "aws_security_group" "SFJTAGS_acl" {
+  name = "SFJTAGS_acl"
   description = "Allow inbound traffic"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.SFJTAGS_vpc.id}"
 
   ingress {
       from_port = 22
@@ -19,6 +19,20 @@ resource "aws_security_group" "allow_acl" {
   ingress {
       from_port = 80
       to_port = 80
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+      from_port = 443
+      to_port = 443
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+      from_port = 3306
+      to_port = 3306
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   }

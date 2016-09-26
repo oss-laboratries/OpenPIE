@@ -1,0 +1,18 @@
+# Install PHP
+- name: Install php
+  yum: name={{ item }} state=present
+  with_items:
+    - php
+
+- name: set timezone php.ini
+  replace: >
+    dest=/etc/php.ini
+    regexp='{{ item.regexp }}'
+    replace='{{ item.replace }}'
+  with_items:
+  - regexp: '^[; ]*date.timezone.*$'
+    replace: 'date.timezone = Asia/Tokyo'
+
+- name: Restart apache
+  service: name=httpd state=restarted
+

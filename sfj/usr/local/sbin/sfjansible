@@ -11,17 +11,59 @@ PDIR=${PWD}
 . /etc/sfj/sfjconf.sh
 
 cd ${BINDIR}
+chmod 0600 ${GITREPODIR}/${1}/*.pem
 
+export ZBXGRP="${1} Servers"
+
+EIPDATA=`DBG=0 python ${BINDIR}/getpublic.py ${1}`
+pubip=`grep PUBIP ${HOME}/.ssh/config`
+if [ "${pubip}" != "" ]
+then
+	pubip=`echo ${EIPDATA} | awk '{print $1}' | awk -F, '{print $3}'`
+	sed -i "s/PUBIP/${pubip}/g" $HOME/.ssh/config
+fi
+
+EIPDATA=`DBG=1 python ${BINDIR}/getpublic.py ${1}`
+
+i=1
 for y in `ls ${GITREPODIR}/${1}/*.yml`
 do
-	h=`echo ${y} | sed "s/yml$/host/"`
-	echo "EXEC : ansible-playbook -i ${h} ${y}"
-	ansible-plybook -i ${h} ${y}
-	RET=$?
+	f=`basename ${y}`
+	t=`echo ${f} | sed "s/.yml$//"`
+	export AgentTag="${t}"
+	eip=`echo ${EIPDATA} | grep ${t} | sed "s/,/ /g" | awk '{if ($3 == "") print $2; else print $3}'`
+	export AgentPublicIP="${eip}"
+		echo ${AgentPublicIP} ${AgentTag}
+	tag[${i}]=${t}
+	echo "EXEC : ansible-playbook -i ${GITREPODIR}/${1}/${t}.host ${GITREPODIR}/${1}/${t}.yml"
+	ansible-playbook -i ${GITREPODIR}/${1}/${t}.host ${GITREPODIR}/${1}/${t}.yml &
+	pid[${i}]=$!
+	i=$(( $i + 1))
+done
+
+j=${i}
+
+i=1
+while [ ${i} -lt ${j} ]
+do
+        wait ${pid[${i}]}
+        ret[${i}]=$?
+        echo "${tag[${i}]} is Done !"
+        i=$(( $i + 1))
+done
+
+
+i=1
+ALLRET=0
+while [ ${i} -lt ${j} ]
+do
+        echo "${tag[${i}]}( ${pid[${i}]} )'s Return Code is ${ret[${i}]}"
+        ALLRET=$(( ${ALLRET} + ${ret[${i}]}))
+        i=$(( $i + 1))
 done
 
 cd ${PDIR}
 
-exit ${RET}
+exit ${ALLRET}
 
 #

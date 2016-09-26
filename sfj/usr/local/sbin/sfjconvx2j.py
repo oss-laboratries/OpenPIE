@@ -19,7 +19,6 @@ gitrepodir=os.environ.get("GITREPODIR")
 configfile=os.environ.get("SFJCONFIGFILE")
 
 xlsfile=""
-## outfile=""
 outfile="ParamaterSeet.json"
 
 
@@ -55,13 +54,14 @@ def sfjconvx2j(dbg=0):
 			items = confinfo['items']
 
 			if dbg >= dbginfo:
-				print "  file      : %s" % file
-				print "  sheet     : %s" % sheet
-				print "  dataarea  : %s" % dataarea
-				print "    fr      : %d" % fr
-				print "    to      : %d" % to
-				print "  step      : %s" % step
-				print "  direction : %s" % direction
+				print "  file      : %s\n" % file
+				print "  sheet     : %s\n" % sheet
+				print "  dataarea  : %s\n" % dataarea
+				print "    fr      : %d\n" % fr
+				print "    to      : %d\n" % to
+				print "  step      : %s\n" % step
+				print "  direction : %s\n" % direction
+				print "\n"
 
 			xf = xlrd.open_workbook( file )
 			sh = xf.sheet_by_name(sheet)
@@ -94,7 +94,7 @@ def sfjconvx2j(dbg=0):
 								addflag = 0
 
 						if dbg >= dbginfo:
-							print "%12s row : col = %2d : %2d %s" % (items[str(no3)]['itm'],row,col,celldata)
+							print "%12s row : col = %2d : %2d %s\n" % (items[str(no3)]['itm'],row,col,celldata)
 
 						itmdata[items[str(no3)]['itm']] = celldata
 
@@ -185,12 +185,8 @@ if __name__ == "__main__":
 	argv = sys.argv
 	argc = len(argv)
 
-	## if argc <= 1:
-		## outfile="ParamaterSeet.json"
-
 	if argc > 1:
 		xlsfile="%s/%s" % (uploaddir,argv[1])
-		## outfile=argv[1].replace("xlsx","json")
 
 	if argc > 2:
 		dbg=int(argv[2])

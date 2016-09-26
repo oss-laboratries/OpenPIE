@@ -6,16 +6,22 @@ then
 	exit 1
 fi
 
-PDIR=${PWD}
-
 . /etc/sfj/sfjconf.sh
+KPWD=${PWD}
+PN=$1
 
-cd ${GITREPODIR}/${1}
-/usr/local/sbin/tf/terraform plan -var-file=sfjpara.tfvars
+cd ${GITREPODIR}/${PN}
+
+terraform plan -var-file=sfjpara.tfvars -no-color
 RET=$?
 
-cd ${PDIR}
+if [ ${RET} -ne 0 ]
+then
+        exit ${RET}
+fi
 
-exit ${RET}
+cd ${KPWD}
+
+exit 0
 
 #

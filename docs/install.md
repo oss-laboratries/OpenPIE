@@ -231,6 +231,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.101-b13, mixed mode)
 # yum install gitlab-ce
 # chmod 600 /etc/gitlab/gitlab.rb 
 # vi /etc/gitlab/gitlab.rb
+# yum install git expect
 ```
 以下を変更
 ```
@@ -686,6 +687,8 @@ export JOSHOST="192.168.100.127"
 ansible 2.1.1.0
   config file = /etc/ansible/ansible.cfg
   configured module search path = Default w/o overrides
+# pip install python-gitlab
+# pip install zabbix-api 
 ```
 １０．OpenAuditインストール
 - 下記ダウンロードサイトから、最新版のLinux用をダウンロードする。

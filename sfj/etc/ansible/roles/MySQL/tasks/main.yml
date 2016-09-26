@@ -1,0 +1,30 @@
+# Install MySQL
+- name: Download and install MySQL Repo
+  yum: name=http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm state=present
+
+- name: Install MySQL
+  yum: name={{ item }} state=present
+  with_items:
+    - mysql-community-server
+    - MySQL-python
+    - mysql-connector-odbc
+    - unixODBC
+
+- name: Set my.cnf
+  lineinfile: >
+    dest=/etc/my.cnf
+    state=present
+    insertbefore='^\[mysqld_safe\]'
+    line='{{item}}'
+  with_items:
+    - 'character-set-server=utf8'
+    - 'skip-character-set-client-handshake'
+    - 'innodb_file_per_table'
+    - 'innodb_buffer_pool_size=64M'
+    - 'innodb_log_file_size=16M'
+    - 'innodb_log_files_in_group=2'
+
+- name: Restart mysqld
+  service: name=mysqld state=restarted enabled=yes
+  ignore_errors: True
+

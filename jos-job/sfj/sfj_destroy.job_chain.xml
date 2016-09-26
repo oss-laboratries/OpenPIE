@@ -2,7 +2,9 @@
 
 
 <job_chain  title="destroy">
-    <job_chain_node  state="9-terraform_destroy" job="9-terraform_destroy" next_state="success" error_state="error"/>
+    <job_chain_node  state="9-terraform_destroy" job="9-terraform_destroy" next_state="5-pushj2g" error_state="error"/>
+
+    <job_chain_node  state="5-pushj2g" job="5-pushj2g" next_state="success" error_state="error"/>
 
     <job_chain_node  state="success"/>
 

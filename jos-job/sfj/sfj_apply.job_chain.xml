@@ -2,7 +2,11 @@
 
 
 <job_chain  title="appry">
-    <job_chain_node  state="6-terraform_apply" job="6-terraform_apply" next_state="success" error_state="error"/>
+    <job_chain_node  state="6-terraform_apply" job="6-terraform_apply" next_state="7-ansible" error_state="error"/>
+
+    <job_chain_node  state="7-ansible" job="7-ansible" next_state="5-pushj2g" error_state="error"/>
+
+    <job_chain_node  state="5-pushj2g" job="5-pushj2g" next_state="success" error_state="error"/>
 
     <job_chain_node  state="success"/>
 

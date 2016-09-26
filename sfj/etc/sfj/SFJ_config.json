@@ -97,17 +97,17 @@
       "5": {
         "itm": "user",
         "def": "MUST",
-        "pos": 35
+        "pos": 36
       },
       "6": {
         "itm": "pass1",
         "def": "MUST",
-        "pos": 36
+        "pos": 37
       },
       "7": {
         "itm": "key",
         "def": "",
-        "pos": 37
+        "pos": 38
       },
       "8": {
         "itm": "vmtype",
@@ -120,66 +120,76 @@
         "pos": 24
       },
       "10": {
-        "itm": "gip",
-        "def": "",
-        "pos": 29
-      },
-      "11": {
-        "itm": "dns1",
-        "def": "",
-        "pos": 31
-      },
-      "12": {
-        "itm": "dns2",
-        "def": "",
-        "pos": 32
-      },
-      "13": {
-        "itm": "dns3",
-        "def": "",
-        "pos": 33
-      },
-      "14": {
-        "itm": "dnssearch",
-        "def": "",
-        "pos": 34
-      },
-      "15": {
-        "itm": "extdisk",
-        "def": "",
-        "pos": 38
-      },
-      "16": {
-        "itm": "extmp",
-        "def": "",
-        "pos": 39
-      },
-      "17": {
         "itm": "monitorname",
         "def": "",
         "pos": 27
       },
+      "11": {
+        "itm": "gip",
+        "def": "",
+        "pos": 29
+      },
+      "12": {
+        "itm": "dns1",
+        "def": "",
+        "pos": 32
+      },
+      "13": {
+        "itm": "dns2",
+        "def": "",
+        "pos": 33
+      },
+      "14": {
+        "itm": "dns3",
+        "def": "",
+        "pos": 34
+      },
+      "15": {
+        "itm": "dnssearch",
+        "def": "",
+        "pos": 35
+      },
+      "16": {
+        "itm": "extdisk",
+        "def": "",
+        "pos": 39
+      },
+      "17": {
+        "itm": "extmp",
+        "def": "",
+        "pos": 40
+      },
       "18": {
+        "itm": "role",
+        "def": "",
+        "pos": 41
+      },
+      "19": {
+        "itm": "Base",
+        "def": "",
+        "pos": 42
+      },
+      "20": {
         "itm": "ApacheHttpd",
         "def": "",
         "pos": 43
       },
-      "19": {
+      "21": {
         "itm": "MySQL",
         "def": "",
         "pos": 44
       },
-      "20": {
+      "22": {
         "itm": "PHP",
         "def": "",
         "pos": 45
       },
-      "21": {
+      "23": {
         "itm": "custom1",
         "def": "",
         "pos": 46
       },
-      "22": {
+      "24": {
         "itm": "custom2",
         "def": "",
         "pos": 47

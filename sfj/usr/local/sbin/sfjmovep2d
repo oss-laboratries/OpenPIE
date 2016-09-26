@@ -21,9 +21,9 @@ then
 	exit 202
 fi
 
+sudo chown -R ${SFJUSER}.${SFJUSER} ${GITREPODIR}/${PNAME}
+sudo chmod -R 0777 ${GITREPODIR}/${PNAME}
 mkdir -p ${GITREPODIR}/${PNAME}/xlsfile
-## chown -R ${SFJUSER}.${SFJUSER} ${GITREPODIR}/${PNAME}
-## chmod -R 0777 ${GITREPODIR}/${PNAME}
 
 echo "mv -f ${UPLOADDIR}/${FILE} ${GITREPODIR}/${PNAME}/xlsfile/${FILE}"
 mv -f ${UPLOADDIR}/${FILE} ${GITREPODIR}/${PNAME}/xlsfile/${FILE}
